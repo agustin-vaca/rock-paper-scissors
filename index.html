@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<script>
+        //Declare variable
+        let scissors = "scissors";
+        let paper = "paper";
+        let rock = "rock";
+        let max = 3;
+        let min = 1;
+        //Define function computerPlay, which assigns a selection to each random integer
+        function computerPlay(num) { 
+            if (num === 1) {
+                return paper;
+            }
+            else if (num === 2) {
+                return rock;
+            }
+            else {
+                return scissors;
+            }
+        }
+        //Define function playRound, which plays a round
+        function playRound(playerSelection, computerSelection) {
+            if (playerSelection === "rock") {
+                if (computerSelection === "paper") {
+                    return "You Lose! Paper beats Rock!";
+                }
+                else if (computerSelection === "scissors") {
+                    return "You Win! Rock beats Scissors"
+                }
+                else {
+                    return "Its a tie!"
+                }
+            }
+            if (playerSelection === "paper") {
+                if (computerSelection === "rock") {
+                    return "You Win! Paper beats Rock!";
+                }
+                else if (computerSelection === "scissors") {
+                    return "You Lose! Scissors beats Paper"
+                }
+                else {
+                    return "Its a tie!"
+                }
+            }
+            if (playerSelection === "scissors") {
+                if (computerSelection === "paper") {
+                    return "You Win! Scissors beats Paper!";
+                }
+                else if (computerSelection === "rock") {
+                    return "You Lose! Rock beats Scissors"
+                }
+                else {
+                    return "Its a tie!"
+                }
+            }
+        }
+        //Declare score variables
+        var player = 0;
+        var computer = 0;
+        //Declare function game, which plays 5 games and returns a winner
+        function game() {
+            for (let i = 0; i < 5; i++) {
+                let playerSelection = prompt("Choose rock, paper, or scissors: ");        
+                playerSelection = playerSelection.toLowerCase();
+                let num = Math.floor(Math.random() * (max - min + 1)) + min;
+                let computerSelection = computerPlay(num);
+                let result = playRound(playerSelection,computerSelection);
+                console.log(result);
+                if (result.includes("Win")) {
+                    player++;
+                }
+                else if (result.includes("Lose")) {
+                    computer++
+                }
+            }
+            if (player > computer) {
+                console.log("You Win! Final score is " + player + " to " + computer + ".")
+            }
+            else if (player < computer) {
+                console.log("You Lose! Final score is " + player + " to " + computer + ".")
+            }
+            else {
+                console.log("It's a Tie! Final score is " + player + " to " + computer + ".")
+            }
+        }
+        game();
+</script>
